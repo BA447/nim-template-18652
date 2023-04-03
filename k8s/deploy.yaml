@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nim
+  labels:
+    app: nim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nim
+  template:
+    metadata:
+      labels:
+        app: nim
+    spec:
+      containers:
+      - name: nim
+        image: ghcr.io/${IMAGE_NAME}:main
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: ".1"
+            memory: ".2Gi"
+          limits:
+            cpu: ".1"
+            memory: ".2Gi"
+        ports:
+        - containerPort: 8080
